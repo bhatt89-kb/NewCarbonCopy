@@ -1,0 +1,32 @@
+
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#0f172a;
+  color:white;
+}
+.app-shell{
+  max-width:1200px;
+  margin:auto;
+  padding:24px;
+}
+.hero{
+  text-align:center;
+  padding:40px 20px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#16a34a,#0ea5e9);
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+.card{
+  background:#1e293b;
+  padding:20px;
+  border-radius:18px;
+}
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr;}
+}

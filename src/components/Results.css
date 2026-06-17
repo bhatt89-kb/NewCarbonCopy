@@ -1,0 +1,278 @@
+/* Results Component Styles */
+
+/* Total Card */
+.result-total-card {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.1), rgba(52, 211, 153, 0.1));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.result-total-top {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.result-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.result-value {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-family: var(--mono);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.result-value.over {
+  color: var(--danger);
+}
+
+.result-value.under {
+  color: var(--accent);
+}
+
+.result-unit {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+/* Comparison */
+.result-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--bg-el);
+  border-radius: var(--radius);
+}
+
+.comparison-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.comp-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comp-dot-target {
+  background: var(--accent);
+}
+
+.comp-dot-global {
+  background: var(--warning);
+}
+
+.comp-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.comp-ratio {
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* Result Actions */
+.result-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Breakdown */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bar-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.bar-label-icon {
+  font-size: 1.2rem;
+}
+
+.bar-track {
+  height: 10px;
+  background: var(--bg-el);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s var(--ease);
+}
+
+.bar-value {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Insights */
+.insights-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.source-badge {
+  display: inline-flex;
+  padding: 0.35rem 0.75rem;
+  background: var(--primary-glow);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.insights-summary {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Recommendations */
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rec-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-el);
+  border-radius: var(--radius);
+  transition: all 0.3s var(--ease);
+}
+
+.rec-item:hover {
+  background: var(--surface);
+  transform: translateX(4px);
+}
+
+.rec-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rec-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.rec-category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.rec-action {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+  line-height: 1.5;
+}
+
+.rec-saving {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .result-total-card {
+    padding: 1.5rem;
+  }
+
+  .result-value {
+    font-size: 2.5rem;
+  }
+
+  .bar-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .bar-label {
+    margin-bottom: 0.25rem;
+  }
+
+  .bar-value {
+    text-align: left;
+    margin-top: 0.25rem;
+  }
+
+  .rec-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rec-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+}
