@@ -28,11 +28,18 @@ export function useFootprint() {
     }
   }, []);
 
+  const reset = useCallback(() => {
+    setResult(null);
+    setInsights(null);
+    setLastInput(null);
+    setStatus('');
+  }, []);
+
   const save = useCallback(() => {
     if (!result || !lastInput) return false;
     try {
-      saveEntry(lastInput, result);
-      setEntries(getHistory());
+      const entry = saveEntry(lastInput, result);
+      setEntries(prev => [entry, ...prev.filter(e => e.id !== entry.id)].slice(0, 50));
       return true;
     } catch {
       return false;
@@ -48,5 +55,5 @@ export function useFootprint() {
     setEntries([]);
   }, []);
 
-  return { result, insights, entries, loading, status, calculate, save, refreshHistory, clearAll };
+  return { result, insights, entries, loading, status, calculate, save, reset, refreshHistory, clearAll };
 }

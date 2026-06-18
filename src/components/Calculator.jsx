@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { emptyInput, DIET_ANNUAL } from '../engine';
+import { emptyInput } from '../engine';
 import './Calculator.css';
 
 const STEPS = [

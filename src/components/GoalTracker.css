@@ -1,0 +1,224 @@
+/* Goal Tracker Styles */
+
+.goal-tracker {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(129, 140, 248, 0.1));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.goal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.goal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.goal-status {
+  padding: 0.35rem 0.75rem;
+  background: var(--primary-glow);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.goal-status.achieved {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: rgba(52, 211, 153, 0.3);
+  color: var(--accent);
+}
+
+.goal-status.danger {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: rgba(244, 63, 94, 0.3);
+  color: var(--danger);
+}
+
+/* Goal Setup */
+.goal-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-el);
+  border-radius: var(--radius);
+}
+
+.goal-input-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.goal-field {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.goal-field label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.goal-field input,
+.goal-field select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  padding: 0.65rem 0.75rem;
+  transition: all 0.3s var(--ease);
+}
+
+.goal-field input:focus,
+.goal-field select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+  outline: none;
+}
+
+/* Goal Display */
+.goal-display {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.goal-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.goal-metric {
+  background: var(--bg-el);
+  padding: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--text);
+}
+
+.metric-value.success {
+  color: var(--accent);
+}
+
+.metric-value.danger {
+  color: var(--danger);
+}
+
+/* Progress Bar */
+.goal-progress {
+  background: var(--bg-el);
+  padding: 1.25rem;
+  border-radius: var(--radius);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.progress-percentage {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--accent);
+}
+
+.progress-bar-track {
+  height: 12px;
+  background: var(--surface);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  border-radius: 999px;
+  transition: width 0.8s var(--ease);
+  position: relative;
+}
+
+.progress-bar-fill.danger {
+  background: linear-gradient(90deg, var(--danger), var(--warning));
+}
+
+.progress-message {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.goal-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .goal-tracker {
+    padding: 1rem;
+  }
+
+  .goal-input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .goal-field {
+    min-width: 100%;
+  }
+
+  .goal-metrics {
+    grid-template-columns: 1fr;
+  }
+}
