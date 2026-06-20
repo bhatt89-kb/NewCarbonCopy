@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SUSTAINABLE_TARGET } from '../engine';
+import { sanitizeNumber, validateDate, safeJSONParse, safeLocalStorageSet } from '../utils/security';
 import './GoalTracker.css';
 
 const GOAL_TYPES = [
@@ -10,7 +11,7 @@ const GOAL_TYPES = [
 export default function GoalTracker({ currentFootprint }) {
   const [goal, setGoal] = useState(() => {
     const saved = localStorage.getItem('carbon_goal');
-    return saved ? JSON.parse(saved) : null;
+    return saved ? safeJSONParse(saved, null) : null;
   });
   
   const [customTarget, setCustomTarget] = useState(2.0);
@@ -19,7 +20,7 @@ export default function GoalTracker({ currentFootprint }) {
 
   useEffect(() => {
     if (goal) {
-      localStorage.setItem('carbon_goal', JSON.stringify(goal));
+      safeLocalStorageSet('carbon_goal', JSON.stringify(goal));
     }
   }, [goal]);
 
@@ -28,12 +29,14 @@ export default function GoalTracker({ currentFootprint }) {
 
     const target = goalType === 'sustainable' 
       ? SUSTAINABLE_TARGET / 1000 
-      : customTarget;
+      : sanitizeNumber(customTarget, 0.5, 20);
+
+    const validatedDate = targetDate ? validateDate(targetDate) : null;
 
     const newGoal = {
       baseline: currentFootprint.total_annual_tonnes,
       target: target,
-      targetDate: targetDate || null,
+      targetDate: validatedDate,
       createdAt: new Date().toISOString(),
       type: goalType,
     };
@@ -43,7 +46,11 @@ export default function GoalTracker({ currentFootprint }) {
 
   const handleResetGoal = () => {
     setGoal(null);
-    localStorage.removeItem('carbon_goal');
+    try {
+      localStorage.removeItem('carbon_goal');
+    } catch {
+      // Silently fail
+    }
   };
 
   if (!goal) {

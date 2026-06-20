@@ -1,0 +1,18 @@
+/* Report Generator Styles */
+.report-generator {
+  background: rgba(34,37,58,.7); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.5rem; margin-bottom: 1.5rem;
+}
+.report-header h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+.report-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+.report-preview {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.25rem;
+}
+.preview-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; color: var(--text-muted);
+  background: var(--bg-el); padding: 0.5rem 0.75rem; border-radius: 8px;
+}
+.report-btn { width: 100%; justify-content: center; }
+@media (max-width: 500px) { .report-preview { grid-template-columns: 1fr; } }

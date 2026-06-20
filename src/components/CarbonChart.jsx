@@ -1,9 +1,10 @@
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { memo } from 'react';
 import { CATEGORY_LABELS, CATEGORY_COLORS, SUSTAINABLE_TARGET, GLOBAL_AVG } from '../engine';
 import './CarbonChart.css';
 
 // Trend Chart - Shows history over time
-export function CarbonTrendChart({ entries }) {
+export const CarbonTrendChart = memo(function CarbonTrendChart({ entries }) {
   if (!entries || entries.length === 0) {
     return (
       <div className="chart-empty">
@@ -44,10 +45,10 @@ export function CarbonTrendChart({ entries }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
 // Category Breakdown Chart
-export function CategoryBreakdownChart({ result }) {
+export const CategoryBreakdownChart = memo(function CategoryBreakdownChart({ result }) {
   if (!result) return null;
 
   const data = Object.entries(result.breakdown_kg).map(([category, value]) => ({
@@ -85,10 +86,10 @@ export function CategoryBreakdownChart({ result }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
 // Comparison Bar Chart
-export function ComparisonChart({ result }) {
+export const ComparisonChart = memo(function ComparisonChart({ result }) {
   if (!result) return null;
 
   const data = [
@@ -130,10 +131,10 @@ export function ComparisonChart({ result }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
 // Progress Chart - Shows reduction progress
-export function ProgressChart({ entries }) {
+export const ProgressChart = memo(function ProgressChart({ entries }) {
   if (!entries || entries.length < 2) {
     return (
       <div className="chart-empty">
@@ -195,4 +196,4 @@ export function ProgressChart({ entries }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});

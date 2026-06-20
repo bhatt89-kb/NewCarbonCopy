@@ -1,32 +1,21 @@
+/* App-level overrides & additions */
+@keyframes spin { to { transform: rotate(360deg); } }
 
-body{
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:#0f172a;
-  color:white;
+.nav-auth {
+  display: flex; align-items: center; gap: 0.5rem; margin-left: 0.5rem;
 }
-.app-shell{
-  max-width:1200px;
-  margin:auto;
-  padding:24px;
+.user-menu {
+  display: flex; align-items: center; gap: 0.5rem;
 }
-.hero{
-  text-align:center;
-  padding:40px 20px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#16a34a,#0ea5e9);
+.user-avatar { font-size: 1.2rem; }
+.user-name {
+  font-weight: 600; font-size: 0.85rem; color: var(--text);
+  max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-top:20px;
-}
-.card{
-  background:#1e293b;
-  padding:20px;
-  border-radius:18px;
-}
-@media(max-width:768px){
-  .grid{grid-template-columns:1fr;}
+
+@media (max-width: 768px) {
+  .nav-inner { flex-wrap: wrap; gap: 0.5rem; }
+  .nav-links { order: 3; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nav-auth { order: 2; }
+  .user-name { display: none; }
 }

@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { emptyInput } from '../engine';
+import { sanitizeNumber } from '../utils/security';
 import './Calculator.css';
 
 const STEPS = [
@@ -17,8 +18,6 @@ const DIETS = [
   { value: 'vegetarian', emoji: '🥬', name: 'Vegetarian', kg: 1500 },
   { value: 'vegan', emoji: '🌱', name: 'Vegan', kg: 1050 },
 ];
-
-const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 
 export default function Calculator({ onCalculate, loading }) {
   const [step, setStep] = useState(0);
@@ -44,21 +43,25 @@ export default function Calculator({ onCalculate, loading }) {
     e.preventDefault();
     const validated = {
       transport: {
-        car_km_per_week: clamp(input.transport.car_km_per_week, 0, 20000),
-        car_fuel: input.transport.car_fuel || 'petrol',
-        public_transit_km_per_week: clamp(input.transport.public_transit_km_per_week, 0, 20000),
-        short_haul_flights_per_year: Math.floor(clamp(input.transport.short_haul_flights_per_year, 0, 200)),
-        long_haul_flights_per_year: Math.floor(clamp(input.transport.long_haul_flights_per_year, 0, 200)),
+        car_km_per_week: sanitizeNumber(input.transport.car_km_per_week, 0, 20000),
+        car_fuel: ['petrol', 'diesel', 'hybrid', 'electric'].includes(input.transport.car_fuel) 
+          ? input.transport.car_fuel 
+          : 'petrol',
+        public_transit_km_per_week: sanitizeNumber(input.transport.public_transit_km_per_week, 0, 20000),
+        short_haul_flights_per_year: Math.floor(sanitizeNumber(input.transport.short_haul_flights_per_year, 0, 200)),
+        long_haul_flights_per_year: Math.floor(sanitizeNumber(input.transport.long_haul_flights_per_year, 0, 200)),
       },
       home: {
-        electricity_kwh_per_month: clamp(input.home.electricity_kwh_per_month, 0, 100000),
-        natural_gas_kwh_per_month: clamp(input.home.natural_gas_kwh_per_month, 0, 100000),
-        household_size: Math.max(1, Math.floor(input.home.household_size)),
+        electricity_kwh_per_month: sanitizeNumber(input.home.electricity_kwh_per_month, 0, 100000),
+        natural_gas_kwh_per_month: sanitizeNumber(input.home.natural_gas_kwh_per_month, 0, 100000),
+        household_size: Math.max(1, Math.floor(sanitizeNumber(input.home.household_size, 1, 50))),
       },
-      diet: input.diet,
+      diet: ['heavy_meat', 'medium_meat', 'low_meat', 'pescatarian', 'vegetarian', 'vegan'].includes(input.diet)
+        ? input.diet
+        : 'medium_meat',
       consumption: {
-        goods_spend_usd_per_month: clamp(input.consumption.goods_spend_usd_per_month, 0, 1000000),
-        waste_kg_per_week: clamp(input.consumption.waste_kg_per_week, 0, 1000),
+        goods_spend_usd_per_month: sanitizeNumber(input.consumption.goods_spend_usd_per_month, 0, 1000000),
+        waste_kg_per_week: sanitizeNumber(input.consumption.waste_kg_per_week, 0, 1000),
       }
     };
     onCalculate(validated);

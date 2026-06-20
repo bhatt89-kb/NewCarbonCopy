@@ -1,0 +1,92 @@
+/* Community Styles — Leaderboard & Challenges */
+.community-section {
+  position: relative; z-index: 1; max-width: 900px;
+  margin: 0 auto; padding: 2rem 1.5rem 3rem;
+}
+
+/* Stats */
+.community-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;
+}
+.cstat-card {
+  background: rgba(34,37,58,.7); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.25rem; text-align: center;
+  display: flex; flex-direction: column; gap: 0.25rem;
+}
+.cstat-value { font-size: 1.8rem; font-weight: 800; font-family: var(--mono); color: var(--primary); }
+.cstat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Leaderboard */
+.leaderboard-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.leader-card {
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(34,37,58,.7); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.25rem; transition: all 0.3s var(--ease);
+}
+.leader-card:hover { border-color: var(--primary); transform: translateX(4px); }
+.leader-card.is-you { border-color: var(--accent-dark); background: rgba(16,185,129,.05); }
+.leader-rank {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+  background: var(--surface); color: var(--text-muted);
+}
+.leader-info { flex: 1; display: flex; flex-direction: column; }
+.leader-name { font-weight: 600; font-size: 0.95rem; }
+.leader-badges { font-size: 0.85rem; margin-top: 0.15rem; }
+.you-badge {
+  background: var(--accent-dark); color: #fff; font-size: 0.65rem;
+  padding: 0.1rem 0.4rem; border-radius: 4px; margin-left: 0.5rem;
+  font-weight: 700; vertical-align: middle;
+}
+.leader-stats { text-align: right; display: flex; flex-direction: column; }
+.leader-footprint { font-family: var(--mono); font-weight: 700; font-size: 1.1rem; color: var(--primary); }
+.leader-reduction { font-size: 0.8rem; color: var(--text-muted); }
+.leader-reduction.positive { color: var(--accent); }
+
+/* Challenges */
+.challenges-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+.challenge-card {
+  background: rgba(34,37,58,.7); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.5rem; transition: all 0.3s var(--ease);
+  display: flex; flex-direction: column;
+}
+.challenge-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.challenge-card.joined { border-color: var(--accent-dark); }
+.challenge-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.75rem; padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+.challenge-icon { font-size: 2rem; }
+.challenge-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem; }
+.challenge-duration { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+.challenge-days-left { font-size: 0.7rem; color: var(--warning); font-weight: 500; }
+.challenge-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.challenge-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem; flex: 1; }
+.challenge-stats { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem; }
+.challenge-join-btn { width: 100%; justify-content: center; }
+.challenge-joined-badge {
+  background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3);
+  color: var(--accent); padding: 0.5rem 0.75rem; border-radius: 8px;
+  font-weight: 600; font-size: 0.85rem; text-align: center;
+}
+.challenge-progress-bar {
+  height: 4px; background: var(--surface); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;
+}
+.challenge-progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.5s; }
+
+.loading-spinner {
+  width: 32px; height: 32px; border: 3px solid var(--border);
+  border-top-color: var(--primary); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 0 auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+  .community-stats { grid-template-columns: repeat(3, 1fr); }
+  .challenges-grid { grid-template-columns: 1fr; }
+}
